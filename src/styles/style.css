@@ -1,3 +1,16 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: rgb(167, 166, 170);
+  background: linear-gradient(
+    360deg,
+    rgba(167, 166, 170, 1) 0%,
+    rgba(0, 112, 255, 1) 100%
+  );
+}
+
 main {
   min-width: 250px;
   width: 50%;
