@@ -5,69 +5,119 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="shortcut icon" href="src/assets/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-        <main class="max-w-md">
-            <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <h1 class="text-3xl font-bold mb-4">Tambah Nilai</h1>
-        
-                <form>
-                    <div class="mb-3">
-                        <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                        <input type="nama" id="nama"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 mb-3">
-                        <div>
-                            <label for="mapel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mata
-                                Pelajaran</label>
-                            <select id="mapel"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Pilih</option>
-                                <option value="">Matematika</option>
-                                <option value="">IPA</option>
-                                <option value="">IPS</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="semester"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Semester</label>
-                            <select id="semester"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Pilih</option>
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
-                                <option value="">6</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nilai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai</label>
-                        <input type="nilai" id="nilai"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="catatan"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catatan</label>
-                        <textarea id="catatan" rows="3"
-                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Tulis catatan"></textarea>
-                    </div>
-        
-                    <div class="flex">
-                        <button type="submit"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
-                        <a href="nilai.html" type="kembali"
-                            class="text-white bg-gray-400 hover:bg-gray-500 mx-2 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Kembali</a>
-        
-                    </div>
-                </form>
+    <div class="grid grid-cols-5">
+        <aside class="w-64">
+            <div class="fixed flex flex-col items-center top-0 bottom-0 w-1/5 bg-gray-600 border-r border-gray-400">
+                <img src="src/assets/logo.png" alt="">
+                <ol class="text-white text-xl font-medium max-w-48 w-20 md:w-32 lg:w-48 mt-8">
+                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500">
+                        <a href="dashboard.html">Home</a>
+                    </li>
+                    <li class="my-2 py-1 px-2 bg-white text-black rounded-md duration-500">
+                        <a href="">Siswa</a>
+                    </li>
+                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500">
+                        <a href="">Wali Kelas</a></li>
+                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500">
+                        <a href="nilai.html">Nilai</a>
+                    </li>
+                </ol>
             </div>
+        </aside>
+        <main class="col-span-4">
+            <header
+                class="sticky flex justify-between top-3 m-3 p-2 z-10 bg-white border border-gray-100 rounded-md shadow">
+                <h1 class="text-2xl font-bold">Name</h1>
+                <a href=""
+                    class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 mx-1 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                    Logout
+                </a>
+            </header>
+
+            <div class="overflow-x-auto m-3 mt-5 p-5 relative shadow-md sm:rounded-lg">
+                <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
+                    <label for="table-search" class="sr-only">Cari</label>
+                    <div class="relative">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="table-search-users"
+                            class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Cari">
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <a href="tambah-siswa.html"
+                        class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-3 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Tambah</a>
+                </div>
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">
+                                Nama
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                NISN
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Tempat, Tanggal Lahir
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Alamat
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Username
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Password
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                <span class="sr-only">Edit</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row"
+                                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Ucup Kali Sugiono
+                            </th>
+                            <td class="py-4 px-6">
+                                20104023
+                            </td>
+                            <td class="py-4 px-6">
+                                Galaksi Bima Sakti, 1000 oktober 20022
+                            </td>
+                            <td class="py-4 px-6">
+                                Ucup Street
+                            </td>
+                            <td class="py-4 px-6">
+                                ucup@gmail.com
+                            </td>
+                            <td class="py-4 px-6">
+                                ucup gaming
+                            </td>
+                            <td class="py-4 px-6 text-center">
+                                <a href="edit-siswa.html"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </main>
+    </div>
 </body>
 </html>
