@@ -11,4 +11,3 @@ $koneksi = mysqli_connect($host, $user, $password, $dbname);
 if (!$koneksi) {
     die("Tidak dapat terhubung ke database");
 }
-?>
