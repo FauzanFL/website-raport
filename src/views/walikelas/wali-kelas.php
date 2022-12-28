@@ -15,7 +15,7 @@
     <div class="grid grid-cols-5">
         <aside class="w-64">
             <div class="fixed flex flex-col items-center top-0 bottom-0 w-1/5 bg-gray-600 border-r border-gray-400">
-                <img src="src/assets/logo.png" alt="">
+                <img src="../../assets/logo.png" alt="">
                 <ol class="text-white text-xl font-medium max-w-48 w-20 md:w-32 lg:w-48 mt-8">
                     <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500">
                         <a href="../general/dashboard.php">Home</a>
