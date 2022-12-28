@@ -9,10 +9,10 @@
 
   <title> Siswa-Nilai </title>
 
-  <link rel="stylesheet" href="src/styles/nilai-siswa.css">
+  <link rel="stylesheet" href="../../styles/nilai-siswa.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet" />
-  <link rel="shortcut icon" href="src/assets/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
@@ -62,66 +62,49 @@
   <main>
 
     <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
-      <button id=" dropdownRadioButton" data-dropdown-toggle="dropdownRadioSemester"
-        class="inline-flex items-center text-black bg-white border border-black focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-        type="button">
+      <button id=" dropdownRadioButton" data-dropdown-toggle="dropdownRadioSemester" class="inline-flex items-center text-black bg-white border border-black focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
         Semester
-        <svg class="ml-2 w-3 h-3" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
+        <svg class="ml-2 w-3 h-3" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>
       </button>
-      <div id="dropdownRadioSemester"
-        class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-        data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"
-        style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
+      <div id="dropdownRadioSemester" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
         <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
           <li>
             <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
               <input id="filter-radio-example-1" type="radio" value="" name="filter-radio" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600
                 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="filter-radio-example-1"
-                class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">1</label>
+              <label for="filter-radio-example-1" class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">1</label>
             </div>
           </li>
           <li>
             <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-              <input checked="" id="filter-radio-example-2" type="radio" value="" name="filter-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="filter-radio-example-2"
-                class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">2</label>
+              <input checked="" id="filter-radio-example-2" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="filter-radio-example-2" class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">2</label>
             </div>
           </li>
           <li>
             <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-              <input id="filter-radio-example-3" type="radio" value="" name="filter-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="filter-radio-example-3"
-                class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">3</label>
+              <input id="filter-radio-example-3" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="filter-radio-example-3" class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">3</label>
             </div>
           </li>
           <li>
             <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-              <input id="filter-radio-example-4" type="radio" value="" name="filter-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="filter-radio-example-4"
-                class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">4</label>
+              <input id="filter-radio-example-4" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="filter-radio-example-4" class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">4</label>
             </div>
           </li>
           <li>
             <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-              <input id="filter-radio-example-5" type="radio" value="" name="filter-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="filter-radio-example-5"
-                class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">5</label>
+              <input id="filter-radio-example-5" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="filter-radio-example-5" class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">5</label>
             </div>
           </li>
           <li>
             <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-              <input id="filter-radio-example-5" type="radio" value="" name="filter-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="filter-radio-example-5"
-                class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">6</label>
+              <input id="filter-radio-example-5" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="filter-radio-example-5" class="ml-2 w-full text-sm font-medium text-black rounded dark:text-gray-300">6</label>
             </div>
           </li>
         </ul>
