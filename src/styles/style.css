@@ -16,3 +16,7 @@ main {
   width: 60%;
   margin: 20px auto 10px auto;
 }
+
+.btn-group {
+  padding: 2%;
+}
