@@ -1,0 +1,163 @@
+* {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.bg-light {
+  background-color: #f5f5f5;
+}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.alert-error {
+  background-color: #fabec0;
+  border: 1px solid #E43D40;
+  color: #E43D40;
+}
+
+.navbar {
+  height: 80px;
+  width: 100%;
+  background-color: #2E8BC0;
+  position: fixed;
+
+  z-index: 1000;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.navbar a {
+  color: #ffff;
+  text-decoration: none;
+}
+
+.nav-brand {
+  display: inline-block;
+  padding: 15px 0;
+  margin-right: 16px;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+}
+
+.nav-menu li a {
+  padding: 20px;
+  display: inline-block;
+}
+
+.float-left {
+  float: left;
+}
+
+.nav-menu li .dropdown {
+  border: 1px solid #ddd;
+  background-color: white;
+  list-style: none;
+  position: absolute;
+  display: none;
+}
+
+.nav-menu li:hover {
+  background-color: white;
+}
+
+.nav-menu li .dropdown a {
+  color: white;
+}
+
+.nav-menu li .dropdown li:hover a {
+  color: white;
+}
+
+.nav-menu li:hover .dropdown {
+  display: block;
+}
+
+.content {
+  padding: 80px 0 30px 0;
+}
+
+.footer {
+  padding: 20px 0;
+}
+
+/* Dash */
+
+main {
+  padding: 1em 3em;
+}
+
+main .content {
+  background-color: #fff;
+  box-shadow: 0 0 3px #151515;
+  padding: 0 20px 10px 20px;
+}
+
+main .item {
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  background-color: #d3d3d3;
+  box-sizing: border-box;
+  box-shadow: 0 20px 20px 0px rgba(0, 0, 0, 0.3);
+  transition: 0.7s;
+}
+
+main a {
+  color: #000;
+}
+
+main a:hover {
+  color: #000;
+}
+
+main a:hover>.item {
+  position: relative;
+  top: -10px;
+  box-shadow: 0 40px 25px -8px rgba(0, 0, 0, 0.3);
+  ;
+}
+
+main .item img {
+  width: 120px;
+}
+
+main .riwayat {
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px #000;
+}
+
+.alert {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.semester {
+  text-align: center;
+  padding: 20px;
+  font-size: large;
+}
+
+.jeda {
+  padding: 2%;
+}
