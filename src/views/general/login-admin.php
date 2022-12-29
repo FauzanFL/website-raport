@@ -9,13 +9,13 @@ if (isset($_POST["login"])) {
     $username = escape($_POST["username"]);
     $password = escape($_POST["password"]);
 
-    $result = checkUsername("admin", $username);
+    $result = checkUsername($ADMIN, $username);
     if (mysqli_affected_rows($koneksi) > 0) {
         $row = mysqli_fetch_array($result);
         if (password_verify($password, $row["password"])) {
             $_SESSION["login"] = true;
             $_SESSION["id"] = $row["id"];
-            $_SESSION["role"] = "admin";
+            $_SESSION["role"] = $ROLE_ADMIN;
             $_SESSION["name"] = $row["nama"];
             redirect("dashboard.php");
             exit;
