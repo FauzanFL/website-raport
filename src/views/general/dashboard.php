@@ -6,7 +6,7 @@ require('../../includes/function.php');
 $name = $_SESSION["name"];
 $role = $_SESSION["role"];
 
-if (!$_SESSION["login"] || $role == "siswa") {
+if (!$_SESSION["login"] || $role == $ROLE_SISWA) {
     redirect("../../index.php");
     exit;
 }
@@ -35,14 +35,14 @@ if (!$_SESSION["login"] || $role == "siswa") {
                     <li class="my-2 py-1 px-2 bg-white text-black rounded-md duration-500">
                         <a href="dashboard.php">Home</a>
                     </li>
-                    <?php if ($role == "admin") : ?>
+                    <?php if ($role == $ROLE_ADMIN) : ?>
                         <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
                         </li>
                         <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
                                 Kelas</a></li>
                         <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Nilai</button>
                         </li>
-                    <?php elseif ($role == "wakel") : ?>
+                    <?php elseif ($role == $ROLE_WAKEL) : ?>
                         <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Siswa</button>
                         </li>
                         <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Wali
@@ -63,12 +63,12 @@ if (!$_SESSION["login"] || $role == "siswa") {
 
             <div class="flex justify-center mt-10">
                 <div class="grid grid-cols-3 gap-5 m-3 w-4/5 max-h-32">
-                    <?php if ($role == "admin") : ?>
-                        <a href="" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-sky-600 hover:bg-sky-700 shadow-lg">
+                    <?php if ($role == $ROLE_ADMIN) : ?>
+                        <a href="../siswa/siswa.php" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-sky-600 hover:bg-sky-700 shadow-lg">
                             <img class="w-28" src="../../assets/group.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Siswa</h3>
                         </a>
-                        <a href="" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-yellow-400 hover:bg-yellow-500 shadow-lg">
+                        <a href="../walikelas/wali-kelas.php" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-yellow-400 hover:bg-yellow-500 shadow-lg">
                             <img class="w-28" src="../../assets/instructor.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Wali Kelas</h3>
                         </a>
@@ -76,7 +76,7 @@ if (!$_SESSION["login"] || $role == "siswa") {
                             <img class="w-28" src="../../assets/exam.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Nilai</h3>
                         </button>
-                    <?php elseif ($role == "wakel") : ?>
+                    <?php elseif ($role == $ROLE_WAKEL) : ?>
                         <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-sky-600 hover:bg-sky-700 shadow-lg" disabled>
                             <img class="w-28" src="../../assets/group.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Siswa</h3>
@@ -85,7 +85,7 @@ if (!$_SESSION["login"] || $role == "siswa") {
                             <img class="w-28" src="../../assets/instructor.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Wali Kelas</h3>
                         </button>
-                        <a href="nilai.html" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-red-500 hover:bg-red-600 shadow-lg">
+                        <a href="../nilai/nilai.php" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-red-500 hover:bg-red-600 shadow-lg">
                             <img class="w-28" src="../../assets/exam.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Nilai</h3>
                         </a>

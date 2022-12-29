@@ -69,6 +69,9 @@
                                 Username
                             </th>
                             <th scope="col" class="py-3 px-6">
+                                Password
+                            </th>
+                            <th scope="col" class="py-3 px-6">
                                 <span class="sr-only">Edit</span>
                             </th>
                         </tr>
@@ -86,6 +89,9 @@
                             </td>
                             <td class="py-4 px-6">
                                 1
+                            </td>
+                            <td class="py-4 px-6">
+                                ff
                             </td>
                             <td class="py-4 px-6 text-center">
                                 <a href="edit-walikelas.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

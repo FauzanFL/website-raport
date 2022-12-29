@@ -32,8 +32,35 @@ function redirect($url)
 
 //============= END DATABASE HELPER =============//
 
+//============= CONSTANT ==============//
+
+// table name
+$ADMIN = "admin";
+$SISWA = "siswa";
+$WAKEL = "wali_kelas";
+$KELAS = "kelas";
+$MAPEL = "mapel";
+$NILAI = "nilai_siswa";
+
+// role
+$ROLE_ADMIN = "admin";
+$ROLE_SISWA = "siswa";
+$ROLE_WAKEL = "wakel";
+
+//============= END OF CONSTANT =============//
+
 
 function checkUsername($table, $username)
 {
     return query("SELECT * FROM $table WHERE username = '$username'");
+}
+
+function showAllData($table)
+{
+    return query("SELECT * FROM $table");
+}
+
+function countTable($table)
+{
+    return query("SELECT COUNT(id) FROM $table");
 }
