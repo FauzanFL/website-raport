@@ -82,3 +82,16 @@ function countTable($table)
     $result = getAllData($table);
     return count($result);
 }
+
+// wali kelas
+function searchWaliKelas($keyword)
+{
+    global $WAKEL;
+    $result = query("SELECT * FROM $WAKEL WHERE nip LIKE '%$keyword%' OR nama LIKE '%$keyword%' or username LIKE '%$keyword%'");
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}
