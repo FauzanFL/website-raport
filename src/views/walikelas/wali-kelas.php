@@ -87,10 +87,10 @@ $data_wakel = getAllData($WAKEL);
                                 Username
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Password
+                                <span class="sr-only">Edit</span>
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                <span class="sr-only">Edit</span>
+                                <span class="sr-only">Action</span>
                             </th>
                         </tr>
                     </thead>
@@ -112,12 +112,13 @@ $data_wakel = getAllData($WAKEL);
                                 <td class="py-4 px-6">
                                     <?= $row["username"]; ?>
                                 </td>
-                                <td class="py-4 px-6">
-                                    <?= $row["password"]; ?>
-                                </td>
                                 <td class="py-4 px-6 text-center">
                                     <a href="edit-walikelas.php?id=<?= $row["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                     <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                </td>
+                                <td class="grid grid-rows-1 py-4 px-6">
+                                    <a href="ganti-username.php?id=<?= $row["id"]; ?>" class="font-medium text-yellow-500 dark:text-yellow-400 hover:underline">Ganti Username</a>
+                                    <a href="ganti-password.php?username=<?= $row["username"]; ?>" class="font-medium text-amber-600 dark:text-amber-500 hover:underline">Ganti Password</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
