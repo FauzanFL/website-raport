@@ -114,7 +114,7 @@ $data_wakel = getAllData($WAKEL);
                                 </td>
                                 <td class="py-4 px-6 text-center">
                                     <a href="edit-walikelas.php?id=<?= $row["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                    <a href="hapus-walikelas.php?id=<?= $row["id"]; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                                 </td>
                                 <td class="grid grid-rows-1 py-4 px-6">
                                     <a href="ganti-username.php?id=<?= $row["id"]; ?>" class="font-medium text-yellow-500 dark:text-yellow-400 hover:underline">Ganti Username</a>

@@ -3,7 +3,6 @@ session_start();
 
 require('../../includes/function.php');
 
-$name = $_SESSION["name"];
 $role = $_SESSION["role"];
 
 if (!$_SESSION["login"] || $role != $ROLE_ADMIN) {
