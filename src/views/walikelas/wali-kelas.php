@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+require('../../includes/function.php');
+
+$name = $_SESSION["name"];
+$role = $_SESSION["role"];
+
+if (!$_SESSION["login"] || $role != $ROLE_ADMIN) {
+    redirect("../../index.php");
+    exit;
+}
+
+$data_wakel = getAllData($WAKEL);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,27 +95,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Adit
-                            </th>
-                            <td class="py-4 px-6">
-                                90
-                            </td>
-                            <td class="py-4 px-6">
-                                Bahasa
-                            </td>
-                            <td class="py-4 px-6">
-                                1
-                            </td>
-                            <td class="py-4 px-6">
-                                ff
-                            </td>
-                            <td class="py-4 px-6 text-center">
-                                <a href="edit-walikelas.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
+                        <?php foreach ($data_wakel as $row) : ?>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <?= $row["nip"]; ?>
+                                </th>
+                                <td class="py-4 px-6">
+                                    <?= $row["nama"]; ?>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <?php
+                                    $kelas = getDataById($KELAS, $row["id_kelas"]);
+                                    echo $kelas["nama"];
+                                    ?>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <?= $row["username"]; ?>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <?= $row["password"]; ?>
+                                </td>
+                                <td class="py-4 px-6 text-center">
+                                    <a href="edit-walikelas.php?id=<?= $row["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

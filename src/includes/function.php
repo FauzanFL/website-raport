@@ -55,12 +55,30 @@ function checkUsername($table, $username)
     return query("SELECT * FROM $table WHERE username = '$username'");
 }
 
-function showAllData($table)
+function getAllData($table)
 {
-    return query("SELECT * FROM $table");
+    $result = query("SELECT * FROM $table");
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}
+
+function getDataById($table, $id)
+{
+    global $koneksi;
+    $result = query("SELECT * FROM $table WHERE id = '$id'");
+    if (mysqli_affected_rows($koneksi) > 0) {
+        $data = mysqli_fetch_array($result);
+        return $data;
+    }
+    return;
 }
 
 function countTable($table)
 {
-    return query("SELECT COUNT(id) FROM $table");
+    $result = getAllData($table);
+    return count($result);
 }
