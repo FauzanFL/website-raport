@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost";
+$host = "localhost:3307";
 $user = "root";
 $password = "";
 $dbname = "web-raport";

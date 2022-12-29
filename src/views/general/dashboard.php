@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+require('../../includes/function.php');
+
+$name = $_SESSION["name"];
+$role = $_SESSION["role"];
+
+if (!$_SESSION["login"] || $role == "siswa") {
+    redirect("../../index.php");
+    exit;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,18 +35,27 @@
                     <li class="my-2 py-1 px-2 bg-white text-black rounded-md duration-500">
                         <a href="dashboard.php">Home</a>
                     </li>
-                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
-                    </li>
-                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
-                            Kelas</a></li>
-                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../nilai/nilai.php">Nilai</a>
-                    </li>
+                    <?php if ($role == "admin") : ?>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
+                        </li>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
+                                Kelas</a></li>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Nilai</button>
+                        </li>
+                    <?php elseif ($role == "wakel") : ?>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Siswa</button>
+                        </li>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Wali
+                                Kelas</button></li>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../nilai/nilai.php">Nilai</a>
+                        </li>
+                    <?php endif; ?>
                 </ol>
             </div>
         </aside>
         <main class="col-span-4">
             <header class="sticky flex justify-between top-3 m-3 p-2 z-10 bg-white border border-gray-100 rounded-md shadow">
-                <h1 class="text-2xl font-bold">Ucup Gaming</h1>
+                <h1 class="text-2xl font-bold"><?= $name; ?></h1>
                 <a href="" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 mx-1 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                     Logout
                 </a>
@@ -38,18 +63,33 @@
 
             <div class="flex justify-center mt-10">
                 <div class="grid grid-cols-3 gap-5 m-3 w-4/5 max-h-32">
-                    <a href="" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-sky-600 hover:bg-sky-700 shadow-lg">
-                        <img class="w-28" src="../../assets/group.png" alt="">
-                        <h3 class="text-3xl px-5 font-bold">Siswa</h3>
-                    </a>
-                    <a href="" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-yellow-400 hover:bg-yellow-500 shadow-lg">
-                        <img class="w-28" src="../../assets/instructor.png" alt="">
-                        <h3 class="text-3xl px-5 font-bold">Wali Kelas</h3>
-                    </a>
-                    <a href="nilai.html" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-red-500 hover:bg-red-600 shadow-lg">
-                        <img class="w-28" src="../../assets/exam.png" alt="">
-                        <h3 class="text-3xl px-5 font-bold">Nilai</h3>
-                    </a>
+                    <?php if ($role == "admin") : ?>
+                        <a href="" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-sky-600 hover:bg-sky-700 shadow-lg">
+                            <img class="w-28" src="../../assets/group.png" alt="">
+                            <h3 class="text-3xl px-5 font-bold">Siswa</h3>
+                        </a>
+                        <a href="" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-yellow-400 hover:bg-yellow-500 shadow-lg">
+                            <img class="w-28" src="../../assets/instructor.png" alt="">
+                            <h3 class="text-3xl px-5 font-bold">Wali Kelas</h3>
+                        </a>
+                        <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-red-400 shadow-lg" disabled>
+                            <img class="w-28" src="../../assets/exam.png" alt="">
+                            <h3 class="text-3xl px-5 font-bold">Nilai</h3>
+                        </button>
+                    <?php elseif ($role == "wakel") : ?>
+                        <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-sky-600 hover:bg-sky-700 shadow-lg" disabled>
+                            <img class="w-28" src="../../assets/group.png" alt="">
+                            <h3 class="text-3xl px-5 font-bold">Siswa</h3>
+                        </button>
+                        <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-yellow-400 hover:bg-yellow-500 shadow-lg" disabled>
+                            <img class="w-28" src="../../assets/instructor.png" alt="">
+                            <h3 class="text-3xl px-5 font-bold">Wali Kelas</h3>
+                        </button>
+                        <a href="nilai.html" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-red-500 hover:bg-red-600 shadow-lg">
+                            <img class="w-28" src="../../assets/exam.png" alt="">
+                            <h3 class="text-3xl px-5 font-bold">Nilai</h3>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </main>
