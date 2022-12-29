@@ -95,3 +95,16 @@ function searchWaliKelas($keyword)
 
     return $rows;
 }
+
+// siswa
+function getIdSiswaByName($name)
+{
+    global $NILAI;
+    global $koneksi;
+    $result = query("SELECT id FROM $NILAI WHERE nama='$name'");
+    if (mysqli_affected_rows($koneksi) > 0) {
+        $data = mysqli_fetch_array($result);
+        return $data["id"];
+    }
+    return;
+}
