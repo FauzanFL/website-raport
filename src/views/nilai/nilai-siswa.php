@@ -12,9 +12,15 @@ if (!$_SESSION["login"] || $role != $ROLE_SISWA) {
 
 $id = $_SESSION["id"];
 $siswa = getDataById($SISWA, $id);
+if (isset($_GET["semester"])) {
+  $semester = $_GET["semester"];
+  $kelompokA = getNilaiSiswa($id, "A", $semester);
+  $kelompokB = getNilaiSiswa($id, "B", $semester);
+} else {
+  $kelompokA = getNilaiSiswa($id, "A", 1);
+  $kelompokB = getNilaiSiswa($id, "B", 1);
+}
 
-$kelompokA = getNilaiSiswa($id, "A", 1);
-$kelompokB = getNilaiSiswa($id, "B", 1);
 
 ?>
 <!DOCTYPE html>
@@ -74,14 +80,16 @@ $kelompokB = getNilaiSiswa($id, "B", 1);
       </button>
       <div id="dropdownRadioSemester" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
         <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
-          <?php for ($i = 1; $i <= 6; $i++) : ?>
-            <li>
-              <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                <input id="filter-radio-example-1" type="radio" value="<?= $i; ?>" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="filter-radio-example-1" class="ml-2 w-full text-sm font-bold text-black rounded dark:text-gray-300"><?= $i; ?></label>
-              </div>
-            </li>
-          <?php endfor; ?>
+          <form id="form" action="">
+            <?php for ($i = 1; $i <= 6; $i++) : ?>
+              <li>
+                <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                  <input id="semester-<?= $i; ?>" type="radio" value="<?= $i; ?>" name="semester" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onclick="submit()">
+                  <label for="semester" class="ml-2 w-full text-sm font-bold text-black rounded dark:text-gray-300"><?= $i; ?></label>
+                </div>
+              </li>
+            <?php endfor; ?>
+          </form>
         </ul>
       </div>
     </div>
@@ -177,6 +185,12 @@ $kelompokB = getNilaiSiswa($id, "B", 1);
 
   </main>
 
+  <script>
+    function submit() {
+      let form = document.getElementById("form");
+      form.submit();
+    }
+  </script>
 </body>
 
 </html>

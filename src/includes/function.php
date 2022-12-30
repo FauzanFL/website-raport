@@ -171,3 +171,42 @@ function searchNilaiInKelas($keyword, $id_kelas)
 
     return $rows;
 }
+
+function getNilaiInKelasBySemester($id_kelas, $semester)
+{
+    global $NILAI;
+    global $SISWA;
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND semester='$semester'");
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}
+
+function getNilaiInKelasByMapel($id_kelas, $id_mapel)
+{
+    global $NILAI;
+    global $SISWA;
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND id_mapel='$id_mapel'");
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}
+
+function getNilaiInKelasByMapelAndSemester($id_kelas, $id_mapel, $semester)
+{
+    global $NILAI;
+    global $SISWA;
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND id_mapel='$id_mapel' AND semester='$semester'");
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}

@@ -23,6 +23,20 @@ if (isset($_POST["cari"])) {
     $searchVal = $keyword;
 }
 
+if (isset($_GET["semester"]) || isset($_GET["mapel"])) {
+    if (isset($_GET["semester"])) {
+        $semester = escape($_GET["semester"]);
+        $nilai = getNilaiInKelasBySemester($wakel["id_kelas"], $semester);
+    } else if (isset($_GET["mapel"])) {
+        $id_mapel = escape($_GET["mapel"]);
+        $nilai = getNilaiInKelasByMapel($wakel["id_kelas"], $id_mapel);
+    }
+} else if (isset($_GET["semester"]) && isset($_GET["mapel"])) {
+    $semester = escape($_GET["semester"]);
+    $id_mapel = escape($_GET["mapel"]);
+    $nilai = getNilaiInKelasByMapelAndSemester($wakel["id_kelas"], $id_mapel, $semester);
+}
+
 $mapel = getAllData($MAPEL);
 
 ?>
@@ -77,42 +91,49 @@ $mapel = getAllData($MAPEL);
             <div class="overflow-x-auto m-3 mt-5 p-5 relative shadow-md sm:rounded-lg">
                 <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
                     <div>
-                        <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadioMapel" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
-                            Mata Pelajaran
-                            <svg class="ml-2 w-3 h-3" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="dropdownRadioMapel" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
-                            <ul class="overflow-y-auto py-1 h-32 p-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
-                                <?php foreach ($mapel as $row) : ?>
-                                    <li>
-                                        <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                            <input id="radioSemester" type="radio" value="<?= $row["id"]; ?>" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="radioSemester" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300"><?= $row["nama"]; ?></label>
-                                        </div>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadioSemester" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
-                            Semester
-                            <svg class="ml-2 w-3 h-3" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="dropdownRadioSemester" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
-                            <ul class="overflow-y-auto py-1 h-32 p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
-                                <?php for ($i = 1; $i <= 6; $i++) : ?>
-                                    <li>
-                                        <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                            <input id="filter-radio-example-1" type="radio" value="<?= $i; ?>" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="filter-radio-example-1" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300"><?= $i; ?></label>
-                                        </div>
-                                    </li>
-                                <?php endfor; ?>
-                            </ul>
-                        </div>
+                        <form action="">
+                            <div class="flex justify-between items-center">
+                                <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadioMapel" class="inline-flex items-center mx-1 text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                                    Mata Pelajaran
+                                    <svg class="ml-2 w-3 h-3" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="dropdownRadioMapel" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
+                                    <ul class="overflow-y-auto py-1 h-32 p-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
+                                        <?php foreach ($mapel as $row) : ?>
+                                            <?php $i = 1;  ?>
+                                            <li>
+                                                <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <input id="mapel-<?= $i; ?>" type="radio" value="<?= $row["id"]; ?>" name="mapel" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="mapel" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300"><?= $row["nama"]; ?></label>
+                                                </div>
+                                            </li>
+                                            <?php $i++ ?>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                                <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadioSemester" class="inline-flex items-center mx-1 text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                                    Semester
+                                    <svg class="ml-2 w-3 h-3" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="dropdownRadioSemester" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
+                                    <ul class="overflow-y-auto py-1 h-32 p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
+                                        <?php for ($i = 1; $i <= 6; $i++) : ?>
+                                            <li>
+                                                <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <input id="semseter-<?= $i; ?>" type="radio" value="<?= $i; ?>" name="semester" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="semester" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300"><?= $i; ?></label>
+                                                </div>
+                                            </li>
+                                        <?php endfor; ?>
+                                    </ul>
+                                </div>
+                                <button type="submit" class="py-1.5 px-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Set</button>
+                            </div>
+                        </form>
                     </div>
                     <form method="POST" class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
