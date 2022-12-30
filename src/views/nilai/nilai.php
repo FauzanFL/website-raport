@@ -135,7 +135,7 @@ $mapel = getAllData($MAPEL);
                             </div>
                         </form>
                     </div>
-                    <form method="POST" class="flex items-center">
+                    <form method="POST" action="nilai.php" class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
