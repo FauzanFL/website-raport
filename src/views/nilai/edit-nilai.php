@@ -3,13 +3,14 @@ session_start();
 
 require('../../includes/function.php');
 
-$name = $_SESSION["name"];
 $role = $_SESSION["role"];
 
 if (!$_SESSION["login"] || $role != $ROLE_ADMIN) {
     redirect("../../index.php");
     exit;
 }
+
+$id_nilai = $_GET["id"];
 
 if (isset($_POST["save"])) {
     $nama = escape($_POST["nama"]);
@@ -20,18 +21,19 @@ if (isset($_POST["save"])) {
 
     $id_siswa = getIdSiswaByName($nama)["id"];
     if ($id_siswa > 0) {
-        $result = query("INSERT INTO $NILAI(id_siswa,id_mapel,semester,nilai,catatan) 
-        VALUES ('$id_siswa','$mapel','$semester','$nilai','$catatan')");
+        $result = query("UPDATE $NILAI SET id_siswa='$id_siswa', id_mapel='$mapel', semester='$semester', nilai='$nilai', catatan='$catatan'");
         if (mysqli_affected_rows($koneksi) > 0) {
             redirect("nilai.php");
             exit;
         }
-        echo "<script>alert('Gagal menambahkan data!')</script>";
+        echo "<script>alert('Gagal mengubah data!')</script>";
     }
     echo "<script>alert('Siswa tidak terdaftar!')</script>";
 }
 
 $mapel = getAllData($MAPEL);
+$nilai = getDataById($NILAI, $id_nilai);
+$siswa = getDataById($SISWA, $nilai["id_siswa"]);
 
 ?>
 <!DOCTYPE html>
@@ -41,7 +43,7 @@ $mapel = getAllData($MAPEL);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Nilai</title>
+    <title>Edit Nilai</title>
     <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../styles/common.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -51,12 +53,12 @@ $mapel = getAllData($MAPEL);
 <body>
     <main class="max-w-md mt-3">
         <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <h1 class="text-3xl font-bold mb-4 dark:text-white">Tambah Nilai</h1>
+            <h1 class="text-3xl font-bold mb-4 dark:text-white">Edit Nilai</h1>
 
             <form method="POST">
                 <div class="mb-3">
                     <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                    <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?= $siswa["nama"]; ?>" required>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mb-3">
                     <div>
@@ -64,7 +66,11 @@ $mapel = getAllData($MAPEL);
                             Pelajaran</label>
                         <select id="mapel" name="mapel" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <?php foreach ($mapel as $row) : ?>
-                                <option value="<?= $row["id"]; ?>"><?= $row["nama"]; ?></option>
+                                <?php if ($nilai["id_mapel"] == $row["id"]) : ?>
+                                    <option value="<?= $row["id"]; ?>" selected><?= $row["nama"]; ?></option>
+                                <?php else : ?>
+                                    <option value="<?= $row["id"]; ?>"><?= $row["nama"]; ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -72,18 +78,22 @@ $mapel = getAllData($MAPEL);
                         <label for="semester" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Semester</label>
                         <select id="semester" name="semester" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <?php for ($i = 1; $i <= 6; $i++) : ?>
-                                <option value="<?= $i; ?>"><?= $i; ?></option>
+                                <?php if ($nilai["semester"] == $i) : ?>
+                                    <option value="<?= $i; ?>" selected><?= $i; ?></option>
+                                <?php else : ?>
+                                    <option value="<?= $i; ?>"><?= $i; ?></option>
+                                <?php endif; ?>
                             <?php endfor; ?>
                         </select>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="nilai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai</label>
-                    <input type="text" name="nilai" id="nilai" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <input type="text" name="nilai" id="nilai" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?= $nilai["nilai"]; ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="catatan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catatan</label>
-                    <textarea id="catatan" name="catatan" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis catatan"></textarea>
+                    <textarea id="catatan" name="catatan" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis catatan" required><?= $nilai["catatan"]; ?></textarea>
                 </div>
 
                 <div class="flex">

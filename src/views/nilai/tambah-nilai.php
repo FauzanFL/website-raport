@@ -3,7 +3,6 @@ session_start();
 
 require('../../includes/function.php');
 
-$name = $_SESSION["name"];
 $role = $_SESSION["role"];
 
 if (!$_SESSION["login"] || $role != $ROLE_ADMIN) {
@@ -83,7 +82,7 @@ $mapel = getAllData($MAPEL);
                 </div>
                 <div class="mb-3">
                     <label for="catatan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catatan</label>
-                    <textarea id="catatan" name="catatan" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis catatan"></textarea>
+                    <textarea id="catatan" name="catatan" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis catatan" required></textarea>
                 </div>
 
                 <div class="flex">

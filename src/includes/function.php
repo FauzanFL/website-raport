@@ -97,7 +97,6 @@ function searchWaliKelas($keyword)
 }
 
 // siswa
-<?php
 function searchSiswa($keyword)
 {
     global $SISWA;
@@ -120,5 +119,3 @@ function getIdSiswaByName($name)
     }
     return;
 }
-
-?>
