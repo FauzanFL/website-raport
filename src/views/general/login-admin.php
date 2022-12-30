@@ -42,7 +42,7 @@ if (isset($_POST["login"])) {
 <body>
     <main>
         <h1 class="text-3xl font-bold mx-2 dark:text-white">Login Admin</h1>
-        <form method="POST" action="">
+        <form method="POST">
             <?php if ($wrong) : ?>
                 <div class="flex p-2 mb-2 text-sm text-red-700 bg-red-100 rounded-md dark:bg-red-200 dark:text-red-800" role="alert">
                     <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

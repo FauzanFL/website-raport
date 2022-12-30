@@ -57,7 +57,7 @@ $mapel = getAllData($MAPEL);
                         </li>
                         <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Wali
                                 Kelas</button></li>
-                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../nilai/nilai.php">Nilai</a>
+                        <li class="my-2 py-1 px-2 bg-white text-black rounded-md duration-500"><a href="../nilai/nilai.php">Nilai</a>
                         </li>
                     <?php endif; ?>
                 </ol>

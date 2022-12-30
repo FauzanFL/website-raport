@@ -77,11 +77,11 @@ if (!$_SESSION["login"] || $role == $ROLE_SISWA) {
                             <h3 class="text-3xl px-5 font-bold">Nilai</h3>
                         </button>
                     <?php elseif ($role == $ROLE_WAKEL) : ?>
-                        <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-sky-600 hover:bg-sky-700 shadow-lg" disabled>
+                        <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-sky-600 shadow-lg" disabled>
                             <img class="w-28" src="../../assets/group.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Siswa</h3>
                         </button>
-                        <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-yellow-400 hover:bg-yellow-500 shadow-lg" disabled>
+                        <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-yellow-400 shadow-lg" disabled>
                             <img class="w-28" src="../../assets/instructor.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Wali Kelas</h3>
                         </button>
