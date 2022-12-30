@@ -95,3 +95,16 @@ function searchWaliKelas($keyword)
 
     return $rows;
 }
+
+// siswa
+function searchSiswa($keyword)
+{
+    global $SISWA;
+    $result = query("SELECT * FROM $SISWA WHERE nisn LIKE '%$keyword%' OR nama LIKE '%$keyword%' OR id_kelas LIKE '%$keyword%' OR ttl LIKE '%$keyword%' OR alamat LIKE '%$keyword%' OR username LIKE '%$keyword%'");
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}
