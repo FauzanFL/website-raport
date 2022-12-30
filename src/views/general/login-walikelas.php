@@ -32,7 +32,7 @@ if (isset($_POST["login"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Guru</title>
+    <title>Login Wali Kelas</title>
     <link rel="stylesheet" href="../../styles/login.css">
     <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,7 +40,7 @@ if (isset($_POST["login"])) {
 
 <body>
     <main>
-        <h1 class="text-3xl font-bold mx-2 dark:text-white">Login Guru</h1>
+        <h1 class="text-3xl font-bold mx-2 dark:text-white">Login Wali Kelas</h1>
         <form method="POST">
             <?php if ($wrong) : ?>
                 <div class="flex p-2 mb-2 text-sm text-red-700 bg-red-100 rounded-md dark:bg-red-200 dark:text-red-800" role="alert">
