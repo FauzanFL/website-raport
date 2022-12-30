@@ -18,7 +18,7 @@ if (isset($_POST["save"])) {
     $nilai = escape($_POST["nilai"]);
     $catatan = escape($_POST["catatan"]);
 
-    $id_siswa = getIdSiswaByName($nama);
+    $id_siswa = getIdSiswaByName($nama)["id"];
     if ($id_siswa > 0) {
         $result = query("INSERT INTO $NILAI(id_siswa,id_mapel,semester,nilai,catatan) 
         VALUES ('$id_siswa','$mapel','$semester','$nilai','$catatan')");
@@ -53,7 +53,7 @@ $mapel = getAllData($MAPEL);
         <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
             <h1 class="text-3xl font-bold mb-4 dark:text-white">Tambah Nilai</h1>
 
-            <form>
+            <form method="POST">
                 <div class="mb-3">
                     <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                     <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>

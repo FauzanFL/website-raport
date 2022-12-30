@@ -99,12 +99,12 @@ function searchWaliKelas($keyword)
 // siswa
 function getIdSiswaByName($name)
 {
-    global $NILAI;
+    global $SISWA;
     global $koneksi;
-    $result = query("SELECT id FROM $NILAI WHERE nama='$name'");
+    $result = query("SELECT id FROM $SISWA WHERE nama='$name'");
     if (mysqli_affected_rows($koneksi) > 0) {
         $data = mysqli_fetch_array($result);
-        return $data["id"];
+        return $data;
     }
     return;
 }

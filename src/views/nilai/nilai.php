@@ -155,8 +155,8 @@ $nilai = getAllData($NILAI);
                                     <?= $row["catatan"]; ?>
                                 </td>
                                 <td class="py-4 px-6 text-center">
-                                    <a href="edit-nilai.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                    <a href="edit-nilai.php?id=<?= $row["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    <a href="hapus-nilai.php?id=<?= $row["id"]; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
