@@ -131,10 +131,13 @@ function searchSiswaByName($name)
 
     return;
 }
-function getSiswaByKelas($id_kelas)
+
+// nilai
+function getNilaByKelas($id_kelas)
 {
+    global $NILAI;
     global $SISWA;
-    $result = query("SELECT * FROM $SISWA WHERE id_kelas='$id_kelas'");
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas')");
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
@@ -143,25 +146,25 @@ function getSiswaByKelas($id_kelas)
     return $rows;
 }
 
-// nilai
-function searchNilai($keyword)
+function getNilaiSiswa($id_siswa, $kelompok, $semester)
 {
     global $NILAI;
-    $id_siswa = searchSiswaByName($keyword)["id"];
-    $result = query("SELECT * FROM $NILAI WHERE id_siswa='$id_siswa' OR nilai='$keyword' OR catatan LIKE '%$keyword%'");
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
+    global $MAPEL;
+    global $koneksi;
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa='$id_siswa' AND id_mapel=(SELECT id FROM $MAPEL WHERE kelompok='$kelompok') AND semester='$semester'");
+    if (mysqli_affected_rows($koneksi) > 0) {
+        $data = mysqli_fetch_array($result);
+        return $data;
     }
 
-    return $rows;
+    return;
 }
 
 function searchNilaiInKelas($keyword, $id_kelas)
 {
     global $NILAI;
-    $id_siswa = searchSiswaByName($keyword)["id"];
-    $result = query("SELECT * FROM $NILAI WHERE id_siswa='$id_siswa' OR nilai='$keyword' OR catatan LIKE '%$keyword%'");
+    global $SISWA;
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas' AND nama LIKE '%$keyword%') OR nilai='$keyword' OR catatan LIKE '%$keyword%'");
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;

@@ -11,12 +11,15 @@ if (!$_SESSION["login"] || $role != $ROLE_WAKEL) {
     exit;
 }
 
-$nilai = getAllData($NILAI);
+$id = $_SESSION["id"];
+
+$wakel = getDataById($WAKEL, $id);
+$nilai = getNilaByKelas($wakel["id_kelas"]);
 $searchVal = "";
 
 if (isset($_POST["cari"])) {
     $keyword = escape($_POST["keyword"]);
-    $nilai = searchNilai($keyword);
+    $nilai = searchNilaiInKelas($keyword, $wakel["id_kelas"]);
     $searchVal = $keyword;
 }
 
@@ -81,7 +84,7 @@ $mapel = getAllData($MAPEL);
                             </svg>
                         </button>
                         <div id="dropdownRadioMapel" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
-                            <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
+                            <ul class="overflow-y-auto py-1 h-32 p-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
                                 <?php foreach ($mapel as $row) : ?>
                                     <li>
                                         <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
@@ -99,7 +102,7 @@ $mapel = getAllData($MAPEL);
                             </svg>
                         </button>
                         <div id="dropdownRadioSemester" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
-                            <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
+                            <ul class="overflow-y-auto py-1 h-32 p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
                                 <?php for ($i = 1; $i <= 6; $i++) : ?>
                                     <li>
                                         <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
