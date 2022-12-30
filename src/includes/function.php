@@ -119,3 +119,29 @@ function getIdSiswaByName($name)
     }
     return;
 }
+function searchSiswaByName($name)
+{
+    global $SISWA;
+    global $koneksi;
+    $result = query("SELECT * FROM $SISWA WHERE nama LIKE '%$name%'");
+    if (mysqli_affected_rows($koneksi) > 0) {
+        $data = mysqli_fetch_array($result);
+        return $data;
+    }
+
+    return;
+}
+
+// nilai
+function searchNilai($keyword)
+{
+    global $NILAI;
+    $id_siswa = searchSiswaByName($keyword)["id"];
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa='$id_siswa' OR nilai='$keyword' OR catatan LIKE '%$keyword%'");
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}
