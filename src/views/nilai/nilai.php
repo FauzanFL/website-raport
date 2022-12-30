@@ -7,7 +7,7 @@ $name = $_SESSION["name"];
 $role = $_SESSION["role"];
 
 if (!$_SESSION["login"] || $role != $ROLE_WAKEL) {
-    redirect("../../index.php");
+    redirect("../../../index.php");
     exit;
 }
 

@@ -6,7 +6,7 @@ require('../../includes/function.php');
 $role = $_SESSION["role"];
 
 if (!$_SESSION["login"] || $role != $ROLE_ADMIN) {
-    redirect("../../index.php");
+    redirect("../../../index.php");
     exit;
 }
 
