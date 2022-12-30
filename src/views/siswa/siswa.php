@@ -45,7 +45,7 @@ if (isset($_POST["cari"])) {
                         <a href="../general/dashboard.php">Home</a>
                     </li>
                     <?php if ($role == $ROLE_ADMIN) : ?>
-                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
+                        <li class="my-2 py-1 px-2 bg-white text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
                         </li>
                         <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
                                 Kelas</a></li>

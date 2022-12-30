@@ -46,7 +46,7 @@ if (isset($_POST["cari"])) {
                     <?php if ($role == $ROLE_ADMIN) : ?>
                         <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
                         </li>
-                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
+                        <li class="my-2 py-1 px-2 bg-white text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
                                 Kelas</a></li>
                         <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Nilai</button>
                         </li>
