@@ -150,14 +150,13 @@ function getNilaiSiswa($id_siswa, $kelompok, $semester)
 {
     global $NILAI;
     global $MAPEL;
-    global $koneksi;
-    $result = query("SELECT * FROM $NILAI WHERE id_siswa='$id_siswa' AND id_mapel=(SELECT id FROM $MAPEL WHERE kelompok='$kelompok') AND semester='$semester'");
-    if (mysqli_affected_rows($koneksi) > 0) {
-        $data = mysqli_fetch_array($result);
-        return $data;
+    $result = query("SELECT n.nilai, n.catatan, m.nama AS nama_mapel FROM $NILAI AS n INNER JOIN $MAPEL AS m WHERE n.id_mapel = m.id AND m.kelompok = '$kelompok' AND n.semester = '$semester' AND n.id_siswa = '$id_siswa'");
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
     }
 
-    return;
+    return $rows;
 }
 
 function searchNilaiInKelas($keyword, $id_kelas)

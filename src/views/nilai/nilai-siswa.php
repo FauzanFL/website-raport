@@ -130,8 +130,7 @@ $kelompokB = getNilaiSiswa($id, "B", 1);
               <tr>
                 <th scope="row"><?= $i; ?></th>
                 <td scope="row">
-                  <?php $mapel = getDataByID($MAPEL, $row["id_mapel"]);
-                  echo $mapel["nama"] ?>
+                  <?= $row["nama_mapel"]; ?>
                 </td>
                 <td scope="row"><?= $row["nilai"]; ?></td>
                 <td scope="row" class="text-justify"><?= $row["catatan"]; ?></th>
