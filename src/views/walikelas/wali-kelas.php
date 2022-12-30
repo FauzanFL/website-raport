@@ -19,8 +19,6 @@ if (isset($_POST["cari"])) {
     $data_wakel = searchWaliKelas($keyword);
     $searchVal = $keyword;
 }
-
-
 ?>
 
 <!DOCTYPE html>

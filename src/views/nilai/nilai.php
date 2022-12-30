@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+require('../../includes/function.php');
+
+$name = $_SESSION["name"];
+$role = $_SESSION["role"];
+
+if (!$_SESSION["login"] || $role != $ROLE_ADMIN) {
+    redirect("../../index.php");
+    exit;
+}
+
+$mapel = getAllData($MAPEL);
+$nilai = getAllData($NILAI);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +48,7 @@
         </aside>
         <main class="col-span-4">
             <header class="sticky flex justify-between top-3 m-3 p-2 z-10 bg-white border border-gray-100 rounded-md shadow">
-                <h1 class="text-2xl font-bold">Ucup Gaming</h1>
+                <h1 class="text-2xl font-bold"><?= $name; ?></h1>
                 <a href="" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 mx-1 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                     Logout
                 </a>
@@ -48,41 +65,14 @@
                         </button>
                         <div id="dropdownRadioMapel" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
                             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-1" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-1" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last
-                                            day</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input checked="" id="filter-radio-example-2" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-2" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last
-                                            7 days</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-3" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-3" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last
-                                            30 days</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-4" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-4" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last
-                                            month</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-5" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-5" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last
-                                            year</label>
-                                    </div>
-                                </li>
+                                <?php foreach ($mapel as $row) : ?>
+                                    <li>
+                                        <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                            <input id="radioSemester" type="radio" value="<?= $row["id"]; ?>" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="radioSemester" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300"><?= $row["nama"]; ?></label>
+                                        </div>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                         <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadioSemester" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
@@ -93,42 +83,14 @@
                         </button>
                         <div id="dropdownRadioSemester" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
                             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-1" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-1" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">1</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input checked="" id="filter-radio-example-2" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-2" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">2</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-3" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-3" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">3</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-4" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-4" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">4</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-5" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-5" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">5</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="filter-radio-example-5" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="filter-radio-example-5" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">6</label>
-                                    </div>
-                                </li>
+                                <?php for ($i = 1; $i <= 6; $i++) : ?>
+                                    <li>
+                                        <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                            <input id="filter-radio-example-1" type="radio" value="<?= $i; ?>" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="filter-radio-example-1" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300"><?= $i; ?></label>
+                                        </div>
+                                    </li>
+                                <?php endfor; ?>
                             </ul>
                         </div>
                     </div>
@@ -169,167 +131,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Adit
-                            </th>
-                            <td class="py-4 px-6">
-                                90
-                            </td>
-                            <td class="py-4 px-6">
-                                Bahasa
-                            </td>
-                            <td class="py-4 px-6">
-                                1
-                            </td>
-                            <td class="py-4 px-6">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio aspernatur sunt at
-                                suscipit. Incidunt commodi asperiores, quod atque temporibus consequatur non. Maxime
-                                neque impedit facilis, explicabo repellendus vero sequi vitae.
-                            </td>
-                            <td class="py-4 px-6 text-center">
-                                <a href="edit-nilai.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Ucang
-                            </th>
-                            <td class="py-4 px-6">
-                                80
-                            </td>
-                            <td class="py-4 px-6">
-                                Bahasa
-                            </td>
-                            <td class="py-4 px-6">
-                                1
-                            </td>
-                            <td class="py-4 px-6">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio aspernatur sunt at
-                                suscipit. Incidunt commodi asperiores, quod atque temporibus consequatur non. Maxime
-                                neque impedit facilis, explicabo repellendus vero sequi vitae.
-                            </td>
-                            <td class="py-4 px-6 text-center">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Ucang
-                            </th>
-                            <td class="py-4 px-6">
-                                80
-                            </td>
-                            <td class="py-4 px-6">
-                                Bahasa
-                            </td>
-                            <td class="py-4 px-6">
-                                1
-                            </td>
-                            <td class="py-4 px-6">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio aspernatur sunt at
-                                suscipit. Incidunt commodi asperiores, quod atque temporibus consequatur non. Maxime
-                                neque impedit facilis, explicabo repellendus vero sequi vitae.
-                            </td>
-                            <td class="py-4 px-6 text-center">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Ucang
-                            </th>
-                            <td class="py-4 px-6">
-                                80
-                            </td>
-                            <td class="py-4 px-6">
-                                Bahasa
-                            </td>
-                            <td class="py-4 px-6">
-                                1
-                            </td>
-                            <td class="py-4 px-6">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio aspernatur sunt at
-                                suscipit. Incidunt commodi asperiores, quod atque temporibus consequatur non. Maxime
-                                neque impedit facilis, explicabo repellendus vero sequi vitae.
-                            </td>
-                            <td class="py-4 px-6 text-center">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Ucang
-                            </th>
-                            <td class="py-4 px-6">
-                                80
-                            </td>
-                            <td class="py-4 px-6">
-                                Bahasa
-                            </td>
-                            <td class="py-4 px-6">
-                                1
-                            </td>
-                            <td class="py-4 px-6">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio aspernatur sunt at
-                                suscipit. Incidunt commodi asperiores, quod atque temporibus consequatur non. Maxime
-                                neque impedit facilis, explicabo repellendus vero sequi vitae.
-                            </td>
-                            <td class="py-4 px-6 text-center">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Ucang
-                            </th>
-                            <td class="py-4 px-6">
-                                80
-                            </td>
-                            <td class="py-4 px-6">
-                                Bahasa
-                            </td>
-                            <td class="py-4 px-6">
-                                1
-                            </td>
-                            <td class="py-4 px-6">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio aspernatur sunt at
-                                suscipit. Incidunt commodi asperiores, quod atque temporibus consequatur non. Maxime
-                                neque impedit facilis, explicabo repellendus vero sequi vitae.
-                            </td>
-                            <td class="py-4 px-6 text-center">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Ucang
-                            </th>
-                            <td class="py-4 px-6">
-                                80
-                            </td>
-                            <td class="py-4 px-6">
-                                Bahasa
-                            </td>
-                            <td class="py-4 px-6">
-                                1
-                            </td>
-                            <td class="py-4 px-6">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio aspernatur sunt at
-                                suscipit. Incidunt commodi asperiores, quod atque temporibus consequatur non. Maxime
-                                neque impedit facilis, explicabo repellendus vero sequi vitae.
-                            </td>
-                            <td class="py-4 px-6 text-center">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
+                        <?php foreach ($nilai as $row) : ?>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <?php
+                                    $siswa = getDataById($SISWA, $row["id_siswa"]);
+                                    echo $siswa["nama"];
+                                    ?>
+                                </th>
+                                <td class="py-4 px-6">
+                                    <?= $row["nilai"]; ?>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <?php
+                                    $pelajaran = getDataById($MAPEL, $row["id_mapel"]);
+                                    echo $pelajaran["nama"];
+                                    ?>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <?= $row["semester"]; ?>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <?= $row["catatan"]; ?>
+                                </td>
+                                <td class="py-4 px-6 text-center">
+                                    <a href="edit-nilai.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
