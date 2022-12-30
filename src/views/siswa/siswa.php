@@ -158,12 +158,3 @@ if (isset($_POST["cari"])) {
 </body>
 
 </html>
-
-<?php
-if (isset($_GET['delete'])) {
-    $id_siswa = $_GET['delete'];
-    $query = query("DELETE FROM $SISWA WHERE id='$id_siswa'");
-    confirmQuery($query);
-    redirect('siswa.php');
-}
-?>
