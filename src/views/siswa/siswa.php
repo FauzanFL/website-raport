@@ -44,21 +44,27 @@ if (isset($_POST["cari"])) {
                     <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500">
                         <a href="../general/dashboard.php">Home</a>
                     </li>
-                    <li class="my-2 py-1 px-2 bg-white text-black rounded-md duration-500">
-                        <a href="siswa.php">Siswa</a>
-                    </li>
-                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500">
-                        <a href="../walikelas/wali-kelas.php">Wali Kelas</a>
-                    </li>
-                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500">
-                        <a href="../nilai/nilai.php">Nilai</a>
-                    </li>
+                    <?php if ($role == $ROLE_ADMIN) : ?>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
+                        </li>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
+                                Kelas</a></li>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Nilai</button>
+                        </li>
+                    <?php elseif ($role == $ROLE_WAKEL) : ?>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Siswa</button>
+                        </li>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Wali
+                                Kelas</button></li>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../nilai/nilai.php">Nilai</a>
+                        </li>
+                    <?php endif; ?>
                 </ol>
             </div>
         </aside>
         <main class="col-span-4">
             <header class="sticky flex justify-between top-3 m-3 p-2 z-10 bg-white border border-gray-100 rounded-md shadow">
-                <h1 class="text-2xl font-bold">Ucup Gaming</h1>
+                <h1 class="text-2xl font-bold"><?= $name; ?></h1>
                 <a href="" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 mx-1 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                     Logout
                 </a>
@@ -126,8 +132,8 @@ if (isset($_POST["cari"])) {
                                 </td>
                                 <td class="py-4 px-6">
                                     <?php
-                                        $kelas = getDataById($KELAS, $row["id_kelas"]);
-                                        echo $kelas["nama"];
+                                    $kelas = getDataById($KELAS, $row["id_kelas"]);
+                                    echo $kelas["nama"];
                                     ?>
                                 </td>
                                 <td class="py-4 px-6">

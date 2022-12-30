@@ -45,12 +45,21 @@ $mapel = getAllData($MAPEL);
                     <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500">
                         <a href="../general/dashboard.php">Home</a>
                     </li>
-                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
-                    </li>
-                    <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
-                            Kelas</a></li>
-                    <li class="my-2 py-1 px-2 bg-white text-black  rounded-md duration-500"><a href="nilai.php">Nilai</a>
-                    </li>
+                    <?php if ($role == $ROLE_ADMIN) : ?>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../siswa/siswa.php">Siswa</a>
+                        </li>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../walikelas/wali-kelas.php">Wali
+                                Kelas</a></li>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Nilai</button>
+                        </li>
+                    <?php elseif ($role == $ROLE_WAKEL) : ?>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Siswa</button>
+                        </li>
+                        <li class="my-2 py-1 px-2 rounded-md duration-500"><button disabled>Wali
+                                Kelas</button></li>
+                        <li class="my-2 py-1 px-2 hover:bg-white hover:text-black rounded-md duration-500"><a href="../nilai/nilai.php">Nilai</a>
+                        </li>
+                    <?php endif; ?>
                 </ol>
             </div>
         </aside>
