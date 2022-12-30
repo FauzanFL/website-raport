@@ -25,7 +25,7 @@ if (isset($_POST["save"])) {
         if ($password === $password2) {
             $pass = password_hash($password, PASSWORD_BCRYPT);
             $result = query("INSERT INTO $SISWA(nisn, nama, ttl, alamat, id_kelas, username, password) 
-            VALUES ('$nisn', '$nama','$ttl', '$alamat','$id_kelas','$username','$password')");
+            VALUES ('$nisn', '$nama','$ttl', '$alamat','$id_kelas','$username','$pass')");
             if (mysqli_affected_rows($koneksi) > 0) {
                 redirect("siswa.php");
                 exit;
