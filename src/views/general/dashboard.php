@@ -11,6 +11,9 @@ if (!$_SESSION["login"] || $role == $ROLE_SISWA) {
     exit;
 }
 
+$countSiswa = countTable($SISWA);
+$countWakel = countTable($WAKEL);
+$countNilai = countTable($NILAI);
 
 ?>
 
@@ -67,27 +70,45 @@ if (!$_SESSION["login"] || $role == $ROLE_SISWA) {
                         <a href="../siswa/siswa.php" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-sky-600 hover:bg-sky-700 shadow-lg">
                             <img class="w-28" src="../../assets/group.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Siswa</h3>
+                            <div class="text-center">
+                                <p class="text-5xl text-white font-bold"><?= $countSiswa; ?></p>
+                            </div>
                         </a>
                         <a href="../walikelas/wali-kelas.php" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-yellow-400 hover:bg-yellow-500 shadow-lg">
                             <img class="w-28" src="../../assets/instructor.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Wali Kelas</h3>
+                            <div class="text-center">
+                                <p class="text-5xl text-white font-bold"><?= $countWakel; ?></p>
+                            </div>
                         </a>
                         <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-red-400 shadow-lg" disabled>
                             <img class="w-28" src="../../assets/exam.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Nilai</h3>
+                            <div class="text-center">
+                                <p class="text-5xl text-white font-bold"><?= $countNilai; ?></p>
+                            </div>
                         </button>
                     <?php elseif ($role == $ROLE_WAKEL) : ?>
                         <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-sky-600 shadow-lg" disabled>
                             <img class="w-28" src="../../assets/group.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Siswa</h3>
+                            <div class="text-center">
+                                <p class="text-5xl text-white font-bold"><?= $countSiswa; ?></p>
+                            </div>
                         </button>
                         <button class="grid grid-cols-3 gap-5 place-items-center p-5 cursor-not-allowed rounded-md bg-yellow-400 shadow-lg" disabled>
                             <img class="w-28" src="../../assets/instructor.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Wali Kelas</h3>
+                            <div class="text-center">
+                                <p class="text-5xl text-white font-bold"><?= $countWakel; ?></p>
+                            </div>
                         </button>
                         <a href="../nilai/nilai.php" class="grid grid-cols-3 gap-5 place-items-center p-5 rounded-md bg-red-500 hover:bg-red-600 shadow-lg">
                             <img class="w-28" src="../../assets/exam.png" alt="">
                             <h3 class="text-3xl px-5 font-bold">Nilai</h3>
+                            <div class="text-center">
+                                <p class="text-5xl text-white font-bold"><?= $countNilai; ?></p>
+                            </div>
                         </a>
                     <?php endif; ?>
                 </div>
