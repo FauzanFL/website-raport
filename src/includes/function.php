@@ -137,7 +137,7 @@ function getNilaByKelas($id_kelas)
 {
     global $NILAI;
     global $SISWA;
-    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas')");
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa IN (SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas')");
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
@@ -163,7 +163,7 @@ function searchNilaiInKelas($keyword, $id_kelas)
 {
     global $NILAI;
     global $SISWA;
-    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas' AND nama LIKE '%$keyword%') OR nilai='$keyword' OR catatan LIKE '%$keyword%'");
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa IN (SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas' AND nama LIKE '%$keyword%') OR nilai='$keyword' OR catatan LIKE '%$keyword%'");
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
@@ -176,7 +176,7 @@ function getNilaiInKelasBySemester($id_kelas, $semester)
 {
     global $NILAI;
     global $SISWA;
-    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND semester='$semester'");
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa IN (SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND semester='$semester'");
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
@@ -189,7 +189,7 @@ function getNilaiInKelasByMapel($id_kelas, $id_mapel)
 {
     global $NILAI;
     global $SISWA;
-    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND id_mapel='$id_mapel'");
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa IN (SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND id_mapel='$id_mapel'");
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
@@ -202,7 +202,7 @@ function getNilaiInKelasByMapelAndSemester($id_kelas, $id_mapel, $semester)
 {
     global $NILAI;
     global $SISWA;
-    $result = query("SELECT * FROM $NILAI WHERE id_siswa=(SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND id_mapel='$id_mapel' AND semester='$semester'");
+    $result = query("SELECT * FROM $NILAI WHERE id_siswa IN (SELECT id FROM $SISWA WHERE id_kelas = '$id_kelas') AND id_mapel='$id_mapel' AND semester='$semester'");
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
