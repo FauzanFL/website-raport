@@ -133,8 +133,8 @@ if (isset($_GET["semester"])) {
           </thead>
 
           <tbody>
+            <?php $i = 1 ?>
             <?php foreach ($kelompokA as $row) : ?>
-              <?php $i = 1 ?>
               <tr>
                 <th scope="row"><?= $i; ?></th>
                 <td scope="row">
@@ -163,8 +163,8 @@ if (isset($_GET["semester"])) {
           </thead>
 
           <tbody>
+            <?php $i = 1 ?>
             <?php foreach ($kelompokB as $row) : ?>
-              <?php $i = 1 ?>
               <tr>
                 <th scope="row"><?= $i; ?></th>
                 <td scope="row">
