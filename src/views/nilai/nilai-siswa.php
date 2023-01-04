@@ -57,7 +57,9 @@ if (isset($_GET["semester"])) {
     <!-- Navbar -->
     <div class="navbar">
       <div class="container">
-        <h2 class="nav-brand float-left"><a href="index.php"> SMPN 3 Talaga </a></h2>
+        <h2 class="nav-brand float-left">
+          <a href="index.php" class="flex items-center"> <img src="../../assets/logo.png" class="w-12 mr-3" alt=""> SMPN 3 Talaga </a>
+        </h2>
 
         <!-- Menu -->
         <ul class="nav-menu float-left">
