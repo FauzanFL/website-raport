@@ -40,7 +40,7 @@ if (isset($_POST["login"])) {
 
 <body>
     <main>
-        <h1 class="text-3xl font-bold mx-2 dark:text-white">Login Wali Kelas</h1>
+        <h1 class="text-3xl font-bold mx-2 dark:text-dark">Login Wali Kelas</h1>
         <form method="POST">
             <?php if ($wrong) : ?>
                 <div class="flex p-2 mb-2 text-sm text-red-700 bg-red-100 rounded-md dark:bg-red-200 dark:text-red-800" role="alert">
