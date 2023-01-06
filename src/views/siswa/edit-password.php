@@ -17,7 +17,7 @@ if (isset($_POST["save"])) {
     $password2 = escape($_POST["password2"]);
     if ($password === $password2) {
         $pass = password_hash($password, PASSWORD_BCRYPT);
-        $result = query("UPDATE $SISWA SET password='$password' WHERE username='$username'");
+        $result = query("UPDATE $SISWA SET password='$pass' WHERE username='$username'");
         if (mysqli_affected_rows($koneksi) > 0) {
             redirect("siswa.php");
             exit;
